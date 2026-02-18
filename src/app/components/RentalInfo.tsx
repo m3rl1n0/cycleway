@@ -136,6 +136,21 @@ export function RentalInfo() {
             </div>
           </div>
         </motion.div>
+
+        {/* Full-width product image */}
+        <motion.div
+          className="mt-20 rounded-3xl overflow-hidden shadow-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <img
+            src="/images/intera.webp"
+            alt="NOOYAH BK002 Bike Hard Case - Vista completa"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
       </div>
     </section>
   );
