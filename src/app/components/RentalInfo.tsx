@@ -86,7 +86,7 @@ export function RentalInfo() {
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-blue-600 rounded-3xl blur-2xl opacity-20" />
             <img
-              src="/images/bike-case-1.png"
+              src="/images/intera.webp"
               alt="Borsa NOOYAH BK002"
               className="relative rounded-3xl shadow-2xl w-full object-contain"
             />
@@ -137,20 +137,7 @@ export function RentalInfo() {
           </div>
         </motion.div>
 
-        {/* Full-width product image */}
-        <motion.div
-          className="mt-20 rounded-3xl overflow-hidden shadow-2xl"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src="/images/intera.webp"
-            alt="NOOYAH BK002 Bike Hard Case - Vista completa"
-            className="w-full h-auto object-cover"
-          />
-        </motion.div>
+
       </div>
     </section>
   );
