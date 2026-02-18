@@ -1,7 +1,5 @@
-import image_6154e2f72c4cf429d885fb2c51de8e279a504903 from 'figma:asset/6154e2f72c4cf429d885fb2c51de8e279a504903.png';
 import { motion } from 'motion/react';
 import { Shield, Clock, ThumbsUp, Package } from 'lucide-react';
-import bikeCase1 from 'figma:asset/4f17ac67de345fe4c53aedabbc609530086db80f.png';
 
 export function RentalInfo() {
   const features = [
@@ -88,7 +86,7 @@ export function RentalInfo() {
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-orange-400 to-blue-600 rounded-3xl blur-2xl opacity-20" />
             <img
-              src={image_6154e2f72c4cf429d885fb2c51de8e279a504903}
+              src="/images/bike-case-1.png"
               alt="Borsa NOOYAH BK002"
               className="relative rounded-3xl shadow-2xl w-full object-contain"
             />

@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
-import image_6154e2f72c4cf429d885fb2c51de8e279a504903 from 'figma:asset/6154e2f72c4cf429d885fb2c51de8e279a504903.png';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Plane, Train, Car, ArrowRight, Sparkles, X, ZoomIn } from 'lucide-react';
-import bikeCase2 from 'figma:asset/df5e6d8e5476c8171c169b1ff81f9da17bc0256f.png';
+import { Plane, Train, Car, ArrowRight, Sparkles, X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import Slider from 'react-slick';
+
+const bikeCase1 = '/images/bike-case-1.png';
+const bikeCase2 = '/images/bike-case-2.png';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -13,11 +14,10 @@ export function Hero() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<Slider>(null);
-  const fullscreenSliderRef = useRef<Slider>(null);
 
   const images = [
-    { src: image_6154e2f72c4cf429d885fb2c51de8e279a504903, alt: 'NOOYAH BK002 Bike Hard Case - Vista 1' },
-    { src: bikeCase2, alt: 'NOOYAH BK002 Bike Hard Case - Vista 2' },
+    { src: bikeCase1, alt: 'NOOYAH BK002 Bike Hard Case - Vista esterna' },
+    { src: bikeCase2, alt: 'NOOYAH BK002 Bike Hard Case - Interno' },
   ];
 
   const sliderSettings = {
@@ -38,9 +38,6 @@ export function Hero() {
     setCurrentSlide(index);
     setIsFullscreen(true);
     document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      fullscreenSliderRef.current?.slickGoTo(index);
-    }, 100);
   };
 
   const closeFullscreen = () => {
@@ -318,25 +315,53 @@ export function Hero() {
             {currentSlide + 1} / {images.length}
           </div>
 
-          {/* Fullscreen Carousel */}
-          <div 
-            className="w-full max-w-6xl px-4 md:px-12"
+          {/* Fullscreen Image */}
+          <div
+            className="w-full max-w-5xl px-16 md:px-24 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <Slider ref={fullscreenSliderRef} {...sliderSettings}>
-              {images.map((image, index) => (
-                <div key={index}>
-                  <motion.img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-auto max-h-[85vh] object-contain mx-auto"
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.8 }}
-                  />
-                </div>
-              ))}
-            </Slider>
+            <motion.img
+              key={currentSlide}
+              src={images[currentSlide].src}
+              alt={images[currentSlide].alt}
+              className="w-full h-auto max-h-[85vh] object-contain"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+
+          {/* Prev / Next arrows */}
+          {images.length > 1 && (
+            <>
+              <motion.button
+                className="absolute left-4 md:left-8 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full z-50 backdrop-blur-sm transition-colors"
+                onClick={(e) => { e.stopPropagation(); setCurrentSlide((currentSlide - 1 + images.length) % images.length); }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronLeft className="h-8 w-8" />
+              </motion.button>
+              <motion.button
+                className="absolute right-4 md:right-8 bg-white/10 hover:bg-white/25 text-white p-3 rounded-full z-50 backdrop-blur-sm transition-colors"
+                onClick={(e) => { e.stopPropagation(); setCurrentSlide((currentSlide + 1) % images.length); }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="h-8 w-8" />
+              </motion.button>
+            </>
+          )}
+
+          {/* Thumbnail dots */}
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 z-50">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); setCurrentSlide(i); }}
+                className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/70'}`}
+              />
+            ))}
           </div>
         </motion.div>
       )}
