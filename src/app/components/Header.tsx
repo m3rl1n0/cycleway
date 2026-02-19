@@ -59,6 +59,7 @@ export function Header() {
           >
             {navLinks.map((link, index) => (
               <motion.button
+                type="button"
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
                 className="px-4 py-2 text-gray-700 hover:text-orange-500 font-medium transition-colors rounded-lg hover:bg-orange-50"
@@ -87,6 +88,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <button
+            type="button"
             className="lg:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -109,6 +111,7 @@ export function Header() {
             <div className="flex flex-col gap-2 mb-4">
               {navLinks.map((link) => (
                 <button
+                  type="button"
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
                   className="px-4 py-2 text-gray-700 hover:text-orange-500 font-medium transition-colors text-left rounded-lg hover:bg-orange-50"
@@ -117,7 +120,8 @@ export function Header() {
                 </button>
               ))}
             </div>
-            <button 
+            <button
+              type="button"
               onClick={scrollToContact}
               className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all font-semibold"
             >

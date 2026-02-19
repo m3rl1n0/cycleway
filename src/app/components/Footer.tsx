@@ -40,6 +40,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             {quickLinks.map((link, index) => (
               <button
+                type="button"
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
                 className="text-xs hover:text-orange-400 transition-colors flex items-center gap-1"

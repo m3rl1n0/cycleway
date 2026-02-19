@@ -99,6 +99,7 @@ export function Pricing() {
               </ul>
 
               <button
+                type="button"
                 onClick={() => document.getElementById('contatti')?.scrollIntoView({ behavior: 'smooth' })}
                 className={`w-full py-3 rounded-full font-bold transition-all ${
                   option.popular
