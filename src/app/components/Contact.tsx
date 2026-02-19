@@ -26,34 +26,11 @@ export function Contact() {
   ];
 
   return (
-    <section className="py-[40px] bg-white relative overflow-hidden px-[0px]">
-      {/* Animated Background Elements */}
-      <motion.div 
-        className="absolute top-20 left-10 w-32 h-32 bg-orange-400/20 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.2, 1],
-          x: [0, 30, 0],
-          y: [0, -30, 0],
-        }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div 
-        className="absolute bottom-20 right-10 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.3, 1],
-          x: [0, -40, 0],
-          y: [0, 40, 0],
-        }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-      <motion.div 
-        className="absolute top-1/2 left-1/2 w-36 h-36 bg-violet-400/20 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.4, 1],
-          rotate: [0, 180, 360],
-        }}
-        transition={{ duration: 15, repeat: Infinity }}
-      />
+    <section className="py-10 md:py-20 bg-white relative overflow-hidden">
+      {/* Static background decorations — no animation to spare mobile CPU */}
+      <div className="pointer-events-none absolute top-20 left-10 w-32 h-32 bg-orange-400/20 rounded-full blur-3xl" />
+      <div className="pointer-events-none absolute bottom-20 right-10 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 w-36 h-36 bg-violet-400/20 rounded-full blur-3xl" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
         
