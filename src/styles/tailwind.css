@@ -3,6 +3,27 @@
 
 @import 'tw-animate-css';
 
+/* Offset scroll per header fixed (h-20 = 80px) */
+@layer base {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  /* Fix react-slick fade mode su mobile: le slide absolute si sovrappongono
+     senza un'altezza esplicita sul container. */
+  .slick-slider,
+  .slick-list,
+  .slick-track {
+    width: 100%;
+  }
+
+  .slick-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
 /* Safari -webkit-backdrop-filter fix */
 @layer utilities {
   .backdrop-blur-sm  { -webkit-backdrop-filter: blur(4px);  backdrop-filter: blur(4px); }

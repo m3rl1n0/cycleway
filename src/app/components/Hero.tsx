@@ -19,14 +19,15 @@ export function Hero() {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    speed: 600,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    fade: true,
+    fade: false,
     cssEase: 'ease-in-out',
+    adaptiveHeight: false,
     beforeChange: (_current: number, next: number) => setCurrentSlide(next),
   };
 
@@ -160,19 +161,22 @@ export function Hero() {
                 <span className="text-xs font-semibold text-gray-700">Clicca per ingrandire</span>
               </div>
 
-              {/* Carousel */}
+              {/* Carousel — aspect-ratio container prevents height collapse on mobile */}
               <div className="relative z-10 cursor-pointer">
-                <Slider ref={sliderRef} {...sliderSettings}>
-                  {images.map((image, index) => (
-                    <div key={index} onClick={() => openFullscreen(index)}>
-                      <img
-                        src={image.src}
-                        alt={image.alt}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                  ))}
-                </Slider>
+                <div style={{ aspectRatio: '4/3' }} className="w-full overflow-hidden">
+                  <Slider ref={sliderRef} {...sliderSettings}>
+                    {images.map((image, index) => (
+                      <div key={index} onClick={() => openFullscreen(index)}>
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-contain"
+                          style={{ aspectRatio: '4/3' }}
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
               </div>
             </div>
           </motion.div>
