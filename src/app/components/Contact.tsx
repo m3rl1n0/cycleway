@@ -15,7 +15,7 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    const mailtoLink = `mailto:info@borsabici24.it?subject=Richiesta informazioni noleggio&body=Nome: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ANumero borse: ${formData.numBags}%0D%0AData inizio noleggio: ${formData.startDate}%0D%0AData fine noleggio: ${formData.endDate}%0D%0A%0D%0AMessaggio:%0D%0A${formData.message}`;
+    const mailtoLink = `mailto:bicycleawayrent@gmail.com?subject=Richiesta informazioni noleggio&body=Nome: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ANumero borse: ${formData.numBags}%0D%0AData inizio noleggio: ${formData.startDate}%0D%0AData fine noleggio: ${formData.endDate}%0D%0A%0D%0AMessaggio:%0D%0A${formData.message}`;
     window.location.href = mailtoLink;
   };
 
