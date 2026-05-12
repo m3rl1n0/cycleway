@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, Bike, Calendar, User, Mail as MailIcon, MessageCircle } from 'lucide-react';
+import { Sparkles, Bike, Calendar, User, Mail as MailIcon, MessageCircle, CheckCircle, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 
 export function Contact() {
@@ -11,12 +11,18 @@ export function Contact() {
     endDate: '',
     message: '',
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     const mailtoLink = `mailto:bicycleawayrent@gmail.com?subject=Richiesta informazioni noleggio&body=Nome: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0ANumero borse: ${formData.numBags}%0D%0AData inizio noleggio: ${formData.startDate}%0D%0AData fine noleggio: ${formData.endDate}%0D%0A%0D%0AMessaggio:%0D%0A${formData.message}`;
     window.location.href = mailtoLink;
+    setSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setFormData({ name: '', email: '', numBags: '1', startDate: '', endDate: '', message: '' });
+    setSubmitted(false);
   };
 
   const steps = [
@@ -83,15 +89,45 @@ export function Contact() {
           </div>
         </motion.div>
 
-        {/* Form */}
+        {/* Form / Confirmation */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <form 
-            onSubmit={handleSubmit} 
+          {submitted ? (
+            <motion.div
+              key="confirmation"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50 flex flex-col items-center text-center gap-6"
+            >
+              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-violet-600 shadow-lg">
+                <CheckCircle className="h-10 w-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Richiesta inviata!</h3>
+                <p className="text-gray-600 text-base md:text-lg max-w-md mx-auto">
+                  Prosegui sul tuo client di posta per inviare la richiesta a{' '}
+                  <span className="font-semibold text-gray-900">bicycleawayrent@gmail.com</span>.
+                </p>
+              </div>
+              <motion.button
+                type="button"
+                onClick={handleReset}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 via-violet-600 to-blue-600 text-white px-8 py-4 rounded-2xl font-bold text-base shadow-xl hover:shadow-orange-500/30 transition-all"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <RefreshCw className="h-5 w-5" />
+                Fai una nuova richiesta
+              </motion.button>
+            </motion.div>
+          ) : (
+          <form
+            onSubmit={handleSubmit}
             className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/50"
           >
             <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -216,6 +252,7 @@ export function Contact() {
               <span className="relative z-10">Prenota il tuo Noleggio</span>
             </motion.button>
           </form>
+          )}
         </motion.div>
 
       </div>
